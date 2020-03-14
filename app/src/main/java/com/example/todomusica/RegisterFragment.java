@@ -60,7 +60,7 @@ public class RegisterFragment extends Fragment {
 
                             if(ok){
                                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                                fm.beginTransaction().replace(R.id.scenary, new HomeFragment()).commit();
+                                fm.beginTransaction().replace(R.id.scenary, new LoginFragment()).commit();
                             }
                             else{
                                 AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
