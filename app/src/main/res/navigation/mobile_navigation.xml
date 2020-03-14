@@ -40,4 +40,11 @@
         android:name="com.example.todomusica.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_register"
+        android:name="com.example.todomusica.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register" />
+
 </navigation>

@@ -8,9 +8,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.todomusica.R;
+import com.example.todomusica.RegisterFragment;
+import com.example.todomusica.ui.slideshow.SlideshowFragment;
 
 public class HomeFragment extends Fragment {
 
@@ -24,7 +29,7 @@ public class HomeFragment extends Fragment {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                
             }
         });
 
