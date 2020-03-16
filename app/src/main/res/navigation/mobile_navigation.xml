@@ -10,23 +10,12 @@
         android:name="com.example.todomusica.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
-
         <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.example.todomusica.ui.home.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
+            android:id="@+id/home2register"
+            app:destination="@id/nav_register" />
         <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
-
-        <argument
-            android:name="myArg"
-            app:argType="string" />
+            android:id="@+id/action_nav_home_to_nav_login2"
+            app:destination="@id/nav_login" />
     </fragment>
 
     <fragment
@@ -44,7 +33,21 @@
     <fragment
         android:id="@+id/nav_register"
         android:name="com.example.todomusica.RegisterFragment"
-        android:label="Register"
-        tools:layout="@layout/fragment_register" />
+        android:label="Registro"
+        tools:layout="@layout/fragment_register" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.example.todomusica.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/login2register"
+            app:destination="@id/nav_register" />
+        <action
+            android:id="@+id/login2home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
 </navigation>
