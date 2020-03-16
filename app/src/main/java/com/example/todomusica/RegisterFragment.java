@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +61,12 @@ public class RegisterFragment extends Fragment {
 
                             if(ok){
                                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                                fm.beginTransaction().replace(R.id.scenary, new LoginFragment()).commit();
+                                FragmentTransaction ft = fm.beginTransaction();
+
+                                LoginFragment loginFragment = new LoginFragment();
+                                ft.replace(R.id.scenary, loginFragment);
+                                ft.addToBackStack(null);
+                                ft.commit();
                             }
                             else{
                                 AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
