@@ -6,12 +6,14 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +28,7 @@ public class LoginFragment extends Fragment {
 
     EditText emailT, passwordT;
     Button btn;
+    TextView btnRegister;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class LoginFragment extends Fragment {
         emailT = (EditText) view.findViewById(R.id.loginEmail);
         passwordT = (EditText) view.findViewById(R.id.loginPass);
         btn = (Button) view.findViewById(R.id.loginBtn);
-        btn = (Button) view.findViewById(R.id.loginBtn);
+        btnRegister = (TextView) view.findViewById(R.id.switchRegisterBtn);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +57,7 @@ public class LoginFragment extends Fragment {
                                 String surname = jsonObject.getString("surname");
                                 String username = jsonObject.getString("username");
 
-                                FragmentManager fm = getActivity().getSupportFragmentManager();
-                                fm.beginTransaction().replace(R.id.scenary, new HomeFragment()).commit();
+                                Navigation.findNavController(view).navigate(R.id.login2home);
                             }
                             else {
                                 AlertDialog.Builder loginError = new AlertDialog.Builder(view.getContext());
@@ -73,6 +75,13 @@ public class LoginFragment extends Fragment {
                 LoginRequest loginRequest = new LoginRequest(email, cryptedPass, loginResponse);
                 RequestQueue queue = Volley.newRequestQueue(view.getContext());
                 queue.add(loginRequest);
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.login2register);
             }
         });
 
