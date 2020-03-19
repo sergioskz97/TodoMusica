@@ -1,4 +1,4 @@
-package com.example.todomusica;
+package com.example.todomusica.Class;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -11,7 +11,7 @@ public class LoginRequest extends StringRequest {
     private static final String route = "https://todomusicatest.000webhostapp.com/Login.php";
     private Map<String, String> params;
 
-    LoginRequest(String email, String password, Response.Listener<String> listener) {
+    public LoginRequest(String email, String password, Response.Listener<String> listener) {
         super(Request.Method.POST, route, listener, null);
 
         params = new HashMap<>();

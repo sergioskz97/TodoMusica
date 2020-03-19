@@ -35,44 +35,8 @@ import java.net.URL;
 
 public class HomeFragment extends Fragment {
 
-    TextView response2;
-    Button testBtn;
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        response2 = (TextView) view.findViewById(R.id.apiResponse);
-        testBtn = (Button) view.findViewById(R.id.testBtn);
-        testBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Response.Listener<String> listener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean ok = jsonObject.getBoolean("success");
-
-                            if (ok){
-                                AlertDialog.Builder loginError = new AlertDialog.Builder(view.getContext());
-                                loginError.setMessage("Ok").setNegativeButton("Reintentar", null).create().show();
-                            }
-                            else{
-                                AlertDialog.Builder loginError = new AlertDialog.Builder(view.getContext());
-                                loginError.setMessage("ERROR").setNegativeButton("Reintentar", null).create().show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-
-                TestRequest testRequest = new TestRequest(listener);
-                RequestQueue queue = Volley.newRequestQueue(view.getContext());
-                queue.add(testRequest);
-            }
-        });
-
 
         return view;
     }
@@ -112,8 +76,6 @@ public class HomeFragment extends Fragment {
                     message += jsonObject.getString("name") + "\n";
                 }
             }
-
-            response2.setText(message);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

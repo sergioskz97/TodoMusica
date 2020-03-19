@@ -1,11 +1,9 @@
 package com.example.todomusica;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -18,7 +16,8 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.todomusica.ui.home.HomeFragment;
+import com.example.todomusica.Class.Crypto;
+import com.example.todomusica.Class.LoginRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
