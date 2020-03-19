@@ -6,12 +6,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +31,7 @@ public class RegisterFragment extends Fragment {
 
     EditText nameT, surnameT, usernameT, emailT, passT, pass2T;
     Button btn;
+    TextView btnLogin;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class RegisterFragment extends Fragment {
         passT = (EditText) view.findViewById(R.id.registerPass);
         pass2T = (EditText) view.findViewById(R.id.registerPass2);
         btn = (Button) view.findViewById(R.id.registerBtn);
+        btnLogin = (TextView) view.findViewById(R.id.switchLoginBtn);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +111,13 @@ public class RegisterFragment extends Fragment {
                     AlertDialog.Builder emailError = new AlertDialog.Builder(view.getContext());
                     emailError.setMessage("Error: Email no valido").setNegativeButton("Reintentar", null).create().show();
                 }
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.register2login);
             }
         });
 

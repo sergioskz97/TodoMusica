@@ -23,22 +23,28 @@
 
     <EditText
         android:id="@+id/loginEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Email"
+        android:layout_gravity="center"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/custom_inputfields"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/loginPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Contraseña"
+        android:layout_gravity="center"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/custom_inputfields"
         android:inputType="textPassword" />
 
     <Button
@@ -58,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="¿No tienes cuenta?"
+        android:textColor="@color/gray"
         android:textAlignment="center" />
 
 </LinearLayout>
