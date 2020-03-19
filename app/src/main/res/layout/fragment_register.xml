@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
+    android:gravity="center_vertical"
     android:paddingLeft="24dp"
-    android:paddingTop="56dp"
     android:paddingRight="24dp"
     tools:context=".RegisterFragment">
 
@@ -18,73 +18,91 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/logo" />
 
     <EditText
         android:id="@+id/registerName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="Nombre"
+        android:layout_gravity="center"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/custom_inputfields"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/registerSurname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="Apellidos"
+        android:layout_gravity="center"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/custom_inputfields"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/registerUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="Nombre de usuario"
+        android:layout_gravity="center"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/custom_inputfields"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/registerEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="Email"
+        android:layout_gravity="center"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/custom_inputfields"
         android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/registerPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="Contraseña"
+        android:layout_gravity="center"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/custom_inputfields"
         android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/registerPass2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="Repita la contraseña"
+        android:layout_gravity="center"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/custom_inputfields"
         android:inputType="textPassword" />
 
     <Button
@@ -98,5 +116,13 @@
         android:text="Registrar"
         android:layout_gravity="center"
         android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/switchLoginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¿Tienes cuenta?"
+        android:textColor="@color/gray"
+        android:textAlignment="center" />
 
 </LinearLayout>

@@ -35,6 +35,9 @@
         android:name="com.example.todomusica.RegisterFragment"
         android:label="Registro"
         tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/register2login"
+            app:destination="@id/nav_login" />
     </fragment>
 
     <fragment
