@@ -14,12 +14,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.todomusica.Class.ArtistAdapter;
+import com.example.todomusica.Class.ArtistItem;
 import com.example.todomusica.Class.CollectionPagerAdapter;
 import com.example.todomusica.R;
 import com.example.todomusica.ui.TestRequest;
@@ -36,6 +40,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 

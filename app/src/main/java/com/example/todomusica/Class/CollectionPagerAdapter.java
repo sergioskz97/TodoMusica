@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.todomusica.DemoFragment;
+import com.example.todomusica.SearchFragment;
 
 public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
     public CollectionPagerAdapter(@NonNull FragmentManager fm) {
@@ -17,9 +18,25 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = new DemoFragment();
-        Bundle args = new Bundle();
-        args.putInt(DemoFragment.ARG_OBJECT, position + 1);
-        fragment.setArguments(args);
+
+        if (position == 0){
+            fragment = new DemoFragment();
+            Bundle args = new Bundle();
+            args.putInt(DemoFragment.ARG_OBJECT, position + 1);
+            fragment.setArguments(args);
+        }
+        else if (position == 1){
+            fragment = new DemoFragment();
+            Bundle args = new Bundle();
+            args.putInt(DemoFragment.ARG_OBJECT, position + 1);
+            fragment.setArguments(args);
+        }
+        else if (position == 2){
+            fragment = new SearchFragment();
+            Bundle args = new Bundle();
+            fragment.setArguments(args);
+        }
+
         return fragment;
     }
 
@@ -30,6 +47,18 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "OBJECT " + (position + 1);
+        String response = "";
+
+        if (position == 0){
+            response = "Seguidos";
+        }
+        else if (position == 1){
+            response = "Noticias";
+        }
+        else if (position == 2){
+            response = "Artistas";
+        }
+
+        return  response;
     }
 }
