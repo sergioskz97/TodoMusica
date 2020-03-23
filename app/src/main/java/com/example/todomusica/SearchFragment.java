@@ -2,6 +2,7 @@ package com.example.todomusica;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.example.todomusica.Class.ArtistAdapter;
 import com.example.todomusica.Class.ArtistItem;
+import com.example.todomusica.Class.SearchRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +46,7 @@ public class SearchFragment extends Fragment {
         mData.add(new ArtistItem(1, "armando", "aaa"));
         mData.add(new ArtistItem(2, "anastasia", "bbb"));
         mData.add(new ArtistItem(3, "carlos", "ccc"));
+        mData.add(new ArtistItem(3, "carla", "ccc"));
 
         artistAdapter = new ArtistAdapter(getActivity(), mData, false);
         recyclerView.setAdapter(artistAdapter);
@@ -50,6 +60,7 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                bindList(s.toString());
                 artistAdapter.getFilter().filter(s);
                 searchOutput = s;
             }
@@ -61,5 +72,35 @@ public class SearchFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void bindList(String s){
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean ok = jsonObject.getBoolean("success");
+
+                    if (ok){
+                        mData.clear();
+                        //String name = (String) jsonObject.get("name");
+                        mData.add(new ArtistItem(1, jsonObject.getString("name"), "a"));
+                    }
+
+                    else{
+                        AlertDialog.Builder searchError = new AlertDialog.Builder(getActivity());
+                        searchError.setMessage("Error: Fallo al conectar con la base de datos").setNegativeButton("Reintentar", null).create().show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        SearchRequest searchRequest = new SearchRequest(s, listener);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue.add(searchRequest);
+
     }
 }
