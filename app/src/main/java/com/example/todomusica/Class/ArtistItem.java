@@ -16,4 +16,6 @@ public class ArtistItem {
     public String getName(){
         return Name;
     }
+
+    public String getPicture() { return Picture; }
 }

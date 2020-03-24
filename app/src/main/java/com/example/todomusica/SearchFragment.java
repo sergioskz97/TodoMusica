@@ -1,18 +1,17 @@
 package com.example.todomusica;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,7 +23,6 @@ import com.example.todomusica.Class.SearchRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +41,6 @@ public class SearchFragment extends Fragment {
 
         search = (EditText) view.findViewById(R.id.searchBar);
         recyclerView = view.findViewById(R.id.rvList);
-
-        mData.add(new ArtistItem(1, "armando", "aaa"));
-        mData.add(new ArtistItem(2, "anastasia", "bbb"));
-        mData.add(new ArtistItem(3, "carlos", "ccc"));
-        mData.add(new ArtistItem(3, "carla", "ccc"));
 
         artistAdapter = new ArtistAdapter(getActivity(), mData, false);
         recyclerView.setAdapter(artistAdapter);
@@ -86,9 +79,10 @@ public class SearchFragment extends Fragment {
                     if (ok){
                         mData.clear();
                         JSONArray jsonArray = new JSONArray(jsonObject.getString("name"));
+                        JSONArray jsonArray1 = new JSONArray(jsonObject.getString("picture"));
 
                        for (int i = 0; i<jsonArray.length(); i++ ){
-                            mData.add(new ArtistItem(1, jsonArray.getString(i), "a"));
+                            mData.add(new ArtistItem(1, jsonArray.getString(i), jsonArray1.getString(i)));
                         }
                     }
 

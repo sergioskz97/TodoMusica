@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todomusica.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     public void onBindViewHolder(@NonNull ArtistViewHolder ArtistViewHolder, int position) {
 
         ArtistViewHolder.tv_title.setText(mDataFiltered.get(position).getName());
+        Picasso.with(mContext).load(mDataFiltered.get(position).getPicture()).into(ArtistViewHolder.tv_picture);
 
     }
 
@@ -115,7 +117,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
 
         TextView tv_title,tv_content,tv_date;
-        ImageView img_user;
+        ImageView tv_picture;
         RelativeLayout container;
 
 
@@ -126,9 +128,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             super(itemView);
             container = itemView.findViewById(R.id.cardContainer);
             tv_title = itemView.findViewById(R.id.cardArtistName);
-            /*tv_content = itemView.findViewById(R.id.tv_description);
-            tv_date = itemView.findViewById(R.id.tv_date);
-            img_user = itemView.findViewById(R.id.img_user);*/
+            tv_picture = itemView.findViewById(R.id.cardArtistPic);
 
             if (isDark) {
                 setDarkTheme();
