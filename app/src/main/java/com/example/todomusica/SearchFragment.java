@@ -21,6 +21,7 @@ import com.example.todomusica.Class.ArtistAdapter;
 import com.example.todomusica.Class.ArtistItem;
 import com.example.todomusica.Class.SearchRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,8 +85,11 @@ public class SearchFragment extends Fragment {
 
                     if (ok){
                         mData.clear();
-                        //String name = (String) jsonObject.get("name");
-                        mData.add(new ArtistItem(1, jsonObject.getString("name"), "a"));
+                        JSONArray jsonArray = new JSONArray(jsonObject.getString("name"));
+
+                       for (int i = 0; i<jsonArray.length(); i++ ){
+                            mData.add(new ArtistItem(1, jsonArray.getString(i), "a"));
+                        }
                     }
 
                     else{
