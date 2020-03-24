@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_login2"
             app:destination="@id/nav_login" />
+        <action
+            android:id="@+id/home2artist"
+            app:destination="@id/nav_artist" />
     </fragment>
 
     <fragment
@@ -29,6 +32,12 @@
         android:name="com.example.todomusica.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_artist"
+        android:name="com.example.todomusica.ArtistprofileFragment"
+        android:label="Artista"
+        tools:layout="@layout/fragment_artistprofile" />
 
     <fragment
         android:id="@+id/nav_register"
