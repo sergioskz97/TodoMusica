@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todomusica.R;
@@ -106,29 +107,26 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
             }
         };
-
-
-
-
     }
 
     public class ArtistViewHolder extends RecyclerView.ViewHolder {
 
-
-
         TextView tv_title,tv_content,tv_date;
         ImageView tv_picture;
         RelativeLayout container;
-
-
-
-
 
         public ArtistViewHolder(@NonNull View itemView) {
             super(itemView);
             container = itemView.findViewById(R.id.cardContainer);
             tv_title = itemView.findViewById(R.id.cardArtistName);
             tv_picture = itemView.findViewById(R.id.cardArtistPic);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(v).navigate(R.id.home2artist);
+                }
+            });
 
             if (isDark) {
                 setDarkTheme();
