@@ -1,11 +1,6 @@
 package com.example.todomusica;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +8,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.todomusica.Class.Crypto;
 import com.example.todomusica.Class.LoginRequest;
+import com.example.todomusica.Class.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,13 +30,15 @@ public class LoginFragment extends Fragment {
     TextView btnRegister;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         emailT = (EditText) view.findViewById(R.id.loginEmail);
         passwordT = (EditText) view.findViewById(R.id.loginPass);
         btn = (Button) view.findViewById(R.id.loginBtn);
         btnRegister = (TextView) view.findViewById(R.id.switchRegisterBtn);
+
+        final SessionManager sessionManager = new SessionManager(getActivity().getApplicationContext());
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,9 @@ public class LoginFragment extends Fragment {
                                 String name = jsonObject.getString("name");
                                 String surname = jsonObject.getString("surname");
                                 String username = jsonObject.getString("username");
+
+                                sessionManager.setLogin(true);
+                                sessionManager.setData(name, surname, username);
 
                                 Navigation.findNavController(view).navigate(R.id.login2home);
                             }
