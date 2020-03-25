@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todomusica.R;
+import com.example.todomusica.ui.home.HomeFragmentDirections;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     Context mContext;
     List<ArtistItem> mData ;
     List<ArtistItem> mDataFiltered ;
+    String aName, aPicture = "";
     boolean isDark = false;
 
 
@@ -124,7 +126,13 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Navigation.findNavController(v).navigate(R.id.home2artist);
+                    aName = mDataFiltered.get(getLayoutPosition()).getName();
+                    aPicture  = mDataFiltered.get(getLayoutPosition()).getPicture();
+
+                    HomeFragmentDirections.Home2artist action = HomeFragmentDirections.home2artist();
+                    action.setName(aName);
+                    action.setPicture(aPicture);
+                    Navigation.findNavController(v).navigate(action);
                 }
             });
 
