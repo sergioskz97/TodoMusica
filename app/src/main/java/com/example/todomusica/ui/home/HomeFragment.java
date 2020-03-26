@@ -2,34 +2,19 @@ package com.example.todomusica.ui.home;
 
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
-import com.example.todomusica.Class.ArtistAdapter;
-import com.example.todomusica.Class.ArtistItem;
 import com.example.todomusica.Class.CollectionPagerAdapter;
 import com.example.todomusica.R;
-import com.example.todomusica.ui.TestRequest;
 import com.google.android.material.tabs.TabLayout;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,22 +23,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     ViewPager viewPager;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView (@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated (@NonNull View view, @Nullable Bundle savedInstanceState) {
         CollectionPagerAdapter collectionPagerAdapter = new CollectionPagerAdapter(getChildFragmentManager());
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(collectionPagerAdapter);
@@ -61,7 +44,7 @@ public class HomeFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void getData(){
+    public void getData () {
         String apiUrl = "https://api.deezer.com/artist/";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

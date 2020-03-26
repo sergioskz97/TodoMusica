@@ -23,12 +23,15 @@ public class SessionManager {
         return sharedPreferences.getBoolean("KEY_LOGIN", false);
     }
 
-    public void setData (String name, String surname, String username) {
+    public void setData (Integer id, String name, String surname, String username) {
+        editor.putInt("KEY_ID", id);
         editor.putString("KEY_NAME", name);
         editor.putString("KEY_SURNAME", surname);
         editor.putString("KEY_USERNAME", username);
         editor.commit();
     }
+
+    public Integer getId () { return sharedPreferences.getInt("KEY_ID", 0); }
 
     public String getName () {
         return sharedPreferences.getString("KEY_NAME", "");

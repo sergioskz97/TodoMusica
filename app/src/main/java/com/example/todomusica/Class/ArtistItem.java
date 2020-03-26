@@ -2,12 +2,12 @@ package com.example.todomusica.Class;
 
 public class ArtistItem {
 
-    int Id;
+    Integer Id;
     String Name, Picture;
 
     public ArtistItem(){}
 
-    public ArtistItem(int id, String name, String picture){
+    public ArtistItem(Integer id, String name, String picture){
         Id = id;
         Name = name;
         Picture = picture;
@@ -18,4 +18,6 @@ public class ArtistItem {
     }
 
     public String getPicture() { return Picture; }
+
+    public Integer getId() { return Id; }
 }

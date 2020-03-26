@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -80,15 +79,15 @@ public class SearchFragment extends Fragment {
                         mData.clear();
                         JSONArray jsonArray = new JSONArray(jsonObject.getString("name"));
                         JSONArray jsonArray1 = new JSONArray(jsonObject.getString("picture"));
+                        JSONArray jsonArray2 = new JSONArray(jsonObject.getString("id"));
 
                        for (int i = 0; i<jsonArray.length(); i++ ){
-                            mData.add(new ArtistItem(1, jsonArray.getString(i), jsonArray1.getString(i)));
+                            mData.add(new ArtistItem(jsonArray2.getInt(i), jsonArray.getString(i), jsonArray1.getString(i)));
                         }
                     }
 
                     else{
-                        AlertDialog.Builder searchError = new AlertDialog.Builder(getActivity());
-                        searchError.setMessage("Error: Fallo al conectar con la base de datos").setNegativeButton("Reintentar", null).create().show();
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
