@@ -49,6 +49,16 @@
         <argument
             android:name="picture"
             android:defaultValue="picture" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/artistSelf"
+            app:destination="@id/nav_artist" />
+        <action
+            android:id="@+id/artist2home"
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment

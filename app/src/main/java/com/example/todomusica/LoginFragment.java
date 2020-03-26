@@ -54,12 +54,13 @@ public class LoginFragment extends Fragment {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean ok = jsonObject.getBoolean("success");
                             if (ok){
+                                Integer id = jsonObject.getInt("id");
                                 String name = jsonObject.getString("name");
                                 String surname = jsonObject.getString("surname");
                                 String username = jsonObject.getString("username");
 
                                 sessionManager.setLogin(true);
-                                sessionManager.setData(name, surname, username);
+                                sessionManager.setData(id, name, surname, username);
 
                                 Navigation.findNavController(view).navigate(R.id.login2home);
                             }

@@ -27,6 +27,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     Context mContext;
     List<ArtistItem> mData ;
     List<ArtistItem> mDataFiltered ;
+    Integer aId;
     String aName, aPicture = "";
     boolean isDark = false;
 
@@ -94,7 +95,6 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
                 }
 
-
                 FilterResults filterResults = new FilterResults();
                 filterResults.values= mDataFiltered;
                 return filterResults;
@@ -126,10 +126,12 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    aId = mDataFiltered.get(getLayoutPosition()).getId();
                     aName = mDataFiltered.get(getLayoutPosition()).getName();
                     aPicture  = mDataFiltered.get(getLayoutPosition()).getPicture();
 
                     HomeFragmentDirections.Home2artist action = HomeFragmentDirections.home2artist();
+                    action.setId(aId);
                     action.setName(aName);
                     action.setPicture(aPicture);
                     Navigation.findNavController(v).navigate(action);
