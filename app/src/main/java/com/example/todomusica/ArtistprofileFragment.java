@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.todomusica.Class.ArtistItem;
 import com.example.todomusica.Class.CheckFollowRequest;
 import com.example.todomusica.Class.FollowRequest;
 import com.example.todomusica.Class.NewsRequest;
@@ -25,10 +26,14 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArtistprofileFragment extends Fragment {
     TextView aName, aFollowers;
     ImageView aPicture;
     Button followBtn;
+    List<ArtistItem> mData = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,8 +52,9 @@ public class ArtistprofileFragment extends Fragment {
                     boolean ok = jsonObjectNews.getBoolean("success");
 
                     if (ok){
+                        String msg = jsonObjectNews.getString("msg");
                         AlertDialog.Builder followError = new AlertDialog.Builder(view.getContext());
-                        followError.setMessage("acierto").setNegativeButton("Reintentar", null).create().show();
+                        followError.setMessage(msg).setNegativeButton("Reintentar", null).create().show();
                     }
                     else {
                         AlertDialog.Builder followError = new AlertDialog.Builder(view.getContext());
