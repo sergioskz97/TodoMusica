@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.todomusica.Class.CheckFollowRequest;
 import com.example.todomusica.Class.FollowRequest;
+import com.example.todomusica.Class.NewsRequest;
 import com.example.todomusica.Class.SessionManager;
 import com.example.todomusica.Class.UnfollowRequest;
 import com.squareup.picasso.Picasso;
@@ -25,7 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ArtistprofileFragment extends Fragment {
-    TextView aName;
+    TextView aName, aFollowers;
     ImageView aPicture;
     Button followBtn;
 
@@ -37,6 +38,32 @@ public class ArtistprofileFragment extends Fragment {
         final ArtistprofileFragmentArgs args = ArtistprofileFragmentArgs.fromBundle(getArguments());
 
         followBtn = (Button) view.findViewById(R.id.followBtn);
+
+        Response.Listener<String> listenerNews = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObjectNews = new JSONObject(response);
+                    boolean ok = jsonObjectNews.getBoolean("success");
+
+                    if (ok){
+                        AlertDialog.Builder followError = new AlertDialog.Builder(view.getContext());
+                        followError.setMessage("acierto").setNegativeButton("Reintentar", null).create().show();
+                    }
+                    else {
+                        AlertDialog.Builder followError = new AlertDialog.Builder(view.getContext());
+                        followError.setMessage("fallo").setNegativeButton("Reintentar", null).create().show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        NewsRequest newsRequest = new NewsRequest(args.getId(), args.getName(), listenerNews);
+        RequestQueue queueNews = Volley.newRequestQueue(getActivity());
+        queueNews.add(newsRequest);
 
         Response.Listener<String> listenerA = new Response.Listener<String>() {
             @Override
@@ -64,12 +91,15 @@ public class ArtistprofileFragment extends Fragment {
 
         if (getArguments() != null){
             String name = args.getName();
+            Integer followers = args.getFollowers();
             String picture = args.getPicture();
 
             aName = (TextView) view.findViewById(R.id.artistProfileName);
+            aFollowers = (TextView) view.findViewById(R.id.artistFollowers);
             aPicture = (ImageView) view.findViewById(R.id.artistProfilePicture);
 
             aName.setText(name);
+            aFollowers.setText(String.valueOf(followers));
             Picasso.with(getActivity()).load(picture).into(aPicture);
 
             followBtn.setOnClickListener(new View.OnClickListener() {
