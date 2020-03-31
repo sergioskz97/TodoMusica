@@ -2,15 +2,16 @@ package com.example.todomusica.Class;
 
 public class ArtistItem {
 
-    Integer Id;
+    Integer Id, Followers;
     String Name, Picture;
 
     public ArtistItem(){}
 
-    public ArtistItem(Integer id, String name, String picture){
+    public ArtistItem(Integer id, String name, String picture, Integer followers){
         Id = id;
         Name = name;
         Picture = picture;
+        Followers = followers;
     }
 
     public String getName(){
@@ -20,4 +21,6 @@ public class ArtistItem {
     public String getPicture() { return Picture; }
 
     public Integer getId() { return Id; }
+
+    public Integer getFollowers() { return Followers; }
 }

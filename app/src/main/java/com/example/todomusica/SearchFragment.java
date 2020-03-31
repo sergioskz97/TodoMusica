@@ -80,9 +80,10 @@ public class SearchFragment extends Fragment {
                         JSONArray jsonArray = new JSONArray(jsonObject.getString("name"));
                         JSONArray jsonArray1 = new JSONArray(jsonObject.getString("picture"));
                         JSONArray jsonArray2 = new JSONArray(jsonObject.getString("id"));
+                        JSONArray jsonArray3 = new JSONArray(jsonObject.getString("followers"));
 
                        for (int i = 0; i<jsonArray.length(); i++ ){
-                            mData.add(new ArtistItem(jsonArray2.getInt(i), jsonArray.getString(i), jsonArray1.getString(i)));
+                            mData.add(new ArtistItem(jsonArray2.getInt(i), jsonArray.getString(i), jsonArray1.getString(i), jsonArray3.getInt(i)));
                         }
                     }
 
