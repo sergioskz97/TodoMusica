@@ -11,18 +11,22 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.todomusica.Class.ArtistItem;
 import com.example.todomusica.Class.CheckFollowRequest;
 import com.example.todomusica.Class.FollowRequest;
+import com.example.todomusica.Class.NewsAdapter;
+import com.example.todomusica.Class.NewsItem;
 import com.example.todomusica.Class.NewsRequest;
 import com.example.todomusica.Class.SessionManager;
 import com.example.todomusica.Class.UnfollowRequest;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,7 +37,9 @@ public class ArtistprofileFragment extends Fragment {
     TextView aName, aFollowers;
     ImageView aPicture;
     Button followBtn;
-    List<ArtistItem> mData = new ArrayList<>();
+    List<NewsItem> mData = new ArrayList<>();
+    RecyclerView recyclerView;
+    NewsAdapter newsAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,13 +58,20 @@ public class ArtistprofileFragment extends Fragment {
                     boolean ok = jsonObjectNews.getBoolean("success");
 
                     if (ok){
-                        String msg = jsonObjectNews.getString("msg");
-                        AlertDialog.Builder followError = new AlertDialog.Builder(view.getContext());
-                        followError.setMessage(msg).setNegativeButton("Reintentar", null).create().show();
+                        JSONArray jsonArrayTittle = new JSONArray(jsonObjectNews.getString("tittle"));
+                        JSONArray jsonArraySnippet = new JSONArray(jsonObjectNews.getString("snippet"));
+                        JSONArray jsonArrayDate = new JSONArray(jsonObjectNews.getString("date"));
+                        JSONArray jsonArrayLink = new JSONArray(jsonObjectNews.getString("link"));
+                        JSONArray jsonArrayThumbnail = new JSONArray(jsonObjectNews.getString("thumbnail"));
+                        JSONArray jsonArrayDomain = new JSONArray(jsonObjectNews.getString("domain"));
+
+                        for (int i = 0 ; i < jsonArrayTittle.length(); i++) {
+                            mData.add(new NewsItem(args.getName(), jsonArrayTittle.getString(i), jsonArrayLink.getString(i), jsonArrayDate.getString(i), jsonArraySnippet.getString(i), jsonArrayThumbnail.getString(i), jsonArrayDomain.getString(i) ));
+                        }
                     }
                     else {
                         AlertDialog.Builder followError = new AlertDialog.Builder(view.getContext());
-                        followError.setMessage("fallo").setNegativeButton("Reintentar", null).create().show();
+                        followError.setMessage("ERROR: ").setNegativeButton("Reintentar", null).create().show();
                     }
 
                 } catch (JSONException e) {
@@ -70,6 +83,12 @@ public class ArtistprofileFragment extends Fragment {
         NewsRequest newsRequest = new NewsRequest(args.getId(), args.getName(), listenerNews);
         RequestQueue queueNews = Volley.newRequestQueue(getActivity());
         queueNews.add(newsRequest);
+
+        recyclerView = view.findViewById(R.id.rvNewsProfile);
+
+        newsAdapter = new NewsAdapter(getActivity(), mData, false);
+        recyclerView.setAdapter(newsAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Response.Listener<String> listenerA = new Response.Listener<String>() {
             @Override
