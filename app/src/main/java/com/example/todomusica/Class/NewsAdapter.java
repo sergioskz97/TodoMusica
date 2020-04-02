@@ -35,7 +35,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public void onBindViewHolder(@NonNull NewsViewHolder newsViewHolder, int position) {
         newsViewHolder.rvTittle.setText(mData.get(position).getTittle());
         newsViewHolder.rvSnippet.setText(mData.get(position).getSnippet());
-        newsViewHolder.rvDate.setText(mData.get(position).getDate());
+        newsViewHolder.rvDomain.setText(mData.get(position).getDomain());
     }
 
     @Override
@@ -44,14 +44,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder {
-        TextView rvTittle, rvSnippet, rvDate;
+        TextView rvTittle, rvSnippet, rvDomain;
 
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);
 
             rvTittle = itemView.findViewById(R.id.rvNewsTittle);
             rvSnippet = itemView.findViewById(R.id.rvNewsSnippet);
-            rvDate = itemView.findViewById(R.id.rvNewsDate);
+            rvDomain = itemView.findViewById(R.id.rvNewsDomain);
         }
     }
 }

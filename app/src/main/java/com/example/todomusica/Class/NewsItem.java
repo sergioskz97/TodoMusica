@@ -1,8 +1,11 @@
 package com.example.todomusica.Class;
 
+import java.text.SimpleDateFormat;
+
 public class NewsItem {
 
-    String Name, Tittle, Link, Date, Snippet, Thumbnail, Domain;
+    String Name, Tittle, Link, DateUtc, Snippet, Thumbnail, Domain;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss'Z'");
 
     public NewsItem(){}
 
@@ -10,7 +13,7 @@ public class NewsItem {
         Name = name;
         Tittle = tittle;
         Link = link;
-        Date = date;
+        DateUtc = date;
         Snippet = snippet;
         Thumbnail = thumbnail;
         Domain = domain;
@@ -22,7 +25,7 @@ public class NewsItem {
 
     public String getLink() { return Link; }
 
-    public String getDate() { return Date; }
+    public String getDate() { return DateUtc; }
 
     public String getSnippet() { return Snippet; }
 

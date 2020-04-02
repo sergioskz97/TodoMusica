@@ -27,6 +27,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
             android:text="Simple Title Text "
             android:textColor="@color/gray"
@@ -46,14 +48,13 @@
             android:textColor="@color/gray" />
 
         <TextView
-            android:id="@+id/rvNewsDate"
+            android:id="@+id/rvNewsDomain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_below="@id/rvNewsSnippet"
+            android:layout_alignStart="@+id/rvNewsSnippet"
+            android:layout_alignEnd="@id/rvNewsSnippet"
+            android:gravity="right"
             android:text="TextView"
             android:textColor="@color/gray"/>
 
