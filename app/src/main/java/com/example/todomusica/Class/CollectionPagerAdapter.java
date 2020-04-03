@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.todomusica.DemoFragment;
+import com.example.todomusica.FeedFragment;
 import com.example.todomusica.SearchFragment;
 
 public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
@@ -20,9 +21,8 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = new DemoFragment();
 
         if (position == 0){
-            fragment = new DemoFragment();
+            fragment = new FeedFragment();
             Bundle args = new Bundle();
-            args.putInt(DemoFragment.ARG_OBJECT, position + 1);
             fragment.setArguments(args);
         }
         else if (position == 1){
