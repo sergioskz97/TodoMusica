@@ -15,6 +15,8 @@ public class FeedRequest extends StringRequest {
         super(Request.Method.POST, route, listener, null);
 
         params = new HashMap<>();
+        params.put("mode", mode+"");
+        params.put("userId", userId+"");
     }
 
     @Override
