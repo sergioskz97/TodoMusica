@@ -71,6 +71,11 @@ public class ArtistprofileFragment extends Fragment {
                         for (int i = 0 ; i < jsonArrayTittle.length(); i++) {
                             mData.add(new NewsItem(args.getName(), jsonArrayTittle.getString(i), jsonArrayLink.getString(i), jsonArrayDate.getString(i), jsonArraySnippet.getString(i), jsonArrayThumbnail.getString(i), jsonArrayDomain.getString(i) ));
                         }
+
+                        recyclerView = view.findViewById(R.id.rvNewsProfile);
+                        newsAdapter = new NewsAdapter(getActivity(), mData, false);
+                        recyclerView.setAdapter(newsAdapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     }
                     else {
                         AlertDialog.Builder followError = new AlertDialog.Builder(view.getContext());
@@ -86,12 +91,6 @@ public class ArtistprofileFragment extends Fragment {
         NewsRequest newsRequest = new NewsRequest(args.getId(), args.getName(), listenerNews);
         RequestQueue queueNews = Volley.newRequestQueue(getActivity());
         queueNews.add(newsRequest);
-
-        recyclerView = view.findViewById(R.id.rvNewsProfile);
-
-        newsAdapter = new NewsAdapter(getActivity(), mData, false);
-        recyclerView.setAdapter(newsAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Response.Listener<String> listenerA = new Response.Listener<String>() {
             @Override
