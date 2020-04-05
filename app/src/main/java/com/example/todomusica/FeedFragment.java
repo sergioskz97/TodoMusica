@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.example.todomusica.Class.FeedRequest;
 import com.example.todomusica.Class.NewsAdapter;
 import com.example.todomusica.Class.NewsItem;
 import com.example.todomusica.Class.SessionManager;
@@ -27,10 +30,8 @@ public class FeedFragment extends Fragment {
     List<NewsItem> mData = new ArrayList<>();
     RecyclerView recyclerView;
     NewsAdapter newsAdapter;
+    String aux = "ASD";
 
-    public FeedFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,8 +65,13 @@ public class FeedFragment extends Fragment {
                         JSONArray jsonArrayDomain = new JSONArray(jsonObject.getString("domain"));
 
                         for (int i = 0 ; i < jsonArrayTittle.length(); i++) {
-                            mData.add(new NewsItem(session.getName(), jsonArrayTittle.getString(i), jsonArrayLink.getString(i), jsonArrayDate.getString(i), jsonArraySnippet.getString(i), jsonArrayThumbnail.getString(i), jsonArrayDomain.getString(i) ));
+                            mData.add(new NewsItem(aux , jsonArrayTittle.getString(i), jsonArrayLink.getString(i), jsonArrayDate.getString(i), jsonArraySnippet.getString(i), jsonArrayThumbnail.getString(i), jsonArrayDomain.getString(i)));
                         }
+
+                        recyclerView = view.findViewById(R.id.rvFeedNews);
+                        newsAdapter = new NewsAdapter(getActivity(), mData, false);
+                        recyclerView.setAdapter(newsAdapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     }
                     else {
                         AlertDialog.Builder followError = new AlertDialog.Builder(view.getContext());
@@ -77,9 +83,9 @@ public class FeedFragment extends Fragment {
             }
         };
 
-        recyclerView = view.findViewById(R.id.rvFeedNews);
-        recyclerView.setAdapter(newsAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        FeedRequest feedRequest = new FeedRequest(mode, userId, listener);
+        RequestQueue queueNews = Volley.newRequestQueue(getActivity());
+        queueNews.add(feedRequest);
 
         return view;
     }
