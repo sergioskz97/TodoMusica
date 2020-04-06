@@ -59,7 +59,7 @@
         android:background="@drawable/custom_buttons"
         android:fontFamily="@font/roboto_bold"
         android:text="Iniciar"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/switchRegisterBtn"

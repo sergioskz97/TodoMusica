@@ -15,7 +15,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:background="@drawable/pink_bg">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -115,13 +115,13 @@
             android:id="@+id/registerBtn"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/custom_buttons"
             android:fontFamily="@font/roboto_bold"
             android:text="Registrar"
-            android:layout_gravity="center"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/switchLoginBtn"
