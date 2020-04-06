@@ -6,27 +6,21 @@
     android:orientation="vertical"
     android:background="#FFFFFF">
 
-    <FrameLayout
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/artistProfilePicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/artistProfileName"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/artistProfilePicture"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center" />
-
-        <TextView
-            android:id="@+id/artistProfileName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom"
-            android:fontFamily="@font/roboto_bold"
-            android:gravity="center"
-            android:text="@string/hello_blank_fragment"
-            android:textSize="18sp" />
-
-    </FrameLayout>
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="@string/hello_blank_fragment"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/artistFollowers"
@@ -44,7 +38,7 @@
         android:layout_gravity="center"
         android:background="@drawable/custom_buttons"
         android:text=""
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:layout_width="match_parent"
