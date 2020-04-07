@@ -16,13 +16,13 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@drawable/pink_bg">
+            android:background="@drawable/bg_top">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView3"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:src="@drawable/loginlogo"
+                android:src="@drawable/login_logo"
                 android:layout_gravity="center" />
 
         </FrameLayout>
@@ -121,7 +121,7 @@
             android:background="@drawable/custom_buttons"
             android:fontFamily="@font/roboto_bold"
             android:text="Registrar"
-            android:textColor="@color/colorAccent" />
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/switchLoginBtn"
