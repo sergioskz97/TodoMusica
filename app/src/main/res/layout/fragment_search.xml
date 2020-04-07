@@ -5,22 +5,32 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp"
     tools:context=".SearchFragment">
 
-    <EditText
-        android:id="@+id/searchBar"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="Buscar"
-        android:layout_gravity="center"
-        android:textColorHint="@color/gray"
-        android:background="@drawable/custom_inputfields"
-        android:inputType="textPersonName" />
+        android:layout_height="70dp"
+        android:background="@drawable/search_bg">
+
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:paddingRight="24dp"
+            android:hint="Buscar"
+            android:layout_gravity="center"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/custom_search"
+            android:inputType="textPersonName"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawableRight="@drawable/ic_search2"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
+
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvList"
@@ -28,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="24dp"/>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -10,26 +11,100 @@
         android:id="@+id/artistProfilePicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/artistProfileName"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center"
         android:text="@string/hello_blank_fragment"
+        android:layout_marginTop="10dp"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/artistFollowers"
+        android:id="@+id/artistProfileGender"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:fontFamily="@font/roboto_bold"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:fontFamily="@font/roboto_light"
         android:gravity="center"
-        android:text="@string/hello_blank_fragment"
+        android:text="Genero"
         android:textSize="18sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutAux"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/relativeLayoutAux"
+            tools:ignore="NotSibling">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/followHead"
+                    android:fontFamily="@font/roboto"
+                    android:text="Seguidores"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/artistFollowers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="0"
+                    android:textColor="@color/colorAccent"
+                    android:layout_below="@+id/followHead"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:id="@+id/newsHead"
+                    android:text="Noticias"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/artistNews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="0"
+                    android:textColor="@color/colorAccent"
+                    android:layout_below="@+id/newsHead"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/followBtn"
@@ -38,13 +113,13 @@
         android:layout_gravity="center"
         android:background="@drawable/custom_buttons"
         android:text=""
-        android:textColor="@color/colorAccent" />
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:text="Noticias"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
