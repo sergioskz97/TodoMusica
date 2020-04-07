@@ -6,14 +6,12 @@
     android:orientation="vertical"
     android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/textView3"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="center"
-        android:text="NOTICIAS"
-        android:textSize="24sp" />
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/fee_top"
+        android:scaleType="fitXY" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFeedNews"
