@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -147,7 +146,10 @@ public class ArtistprofileFragment extends Fragment {
                                         }
 
                                         else {
-                                            Navigation.findNavController(view).navigate(R.id.artist2home);
+                                            int actualFollowers = Integer.parseInt((String) aFollowers.getText());
+                                            actualFollowers = actualFollowers + 1;
+                                            aFollowers.setText(actualFollowers + "");
+                                            followBtn.setText("Dejar de seguir");
                                         }
 
                                     } catch (JSONException e) {
@@ -174,7 +176,10 @@ public class ArtistprofileFragment extends Fragment {
                                         }
 
                                         else {
-                                            Navigation.findNavController(view).navigate(R.id.artist2home);
+                                            int actualFollowers = Integer.parseInt((String) aFollowers.getText());
+                                            actualFollowers = actualFollowers - 1;
+                                            aFollowers.setText(actualFollowers + "");
+                                            followBtn.setText("Seguir");
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
