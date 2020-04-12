@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistprofileFragment extends Fragment {
-    TextView aName, aFollowers;
+    TextView aName, aFollowers, aGenre;
     ImageView aPicture;
     Button followBtn;
     List<NewsItem> mData = new ArrayList<>();
@@ -117,14 +117,17 @@ public class ArtistprofileFragment extends Fragment {
 
         if (getArguments() != null){
             String name = args.getName();
+            String genre = args.getGenre();
             Integer followers = args.getFollowers();
             String picture = args.getPicture();
 
             aName = (TextView) view.findViewById(R.id.artistProfileName);
             aFollowers = (TextView) view.findViewById(R.id.artistFollowers);
             aPicture = (ImageView) view.findViewById(R.id.artistProfilePicture);
+            aGenre = (TextView) view.findViewById(R.id.artistProfileGenre);
 
             aName.setText(name);
+            aGenre.setText(genre);
             aFollowers.setText(String.valueOf(followers));
             Picasso.with(getActivity()).load(picture).into(aPicture);
 

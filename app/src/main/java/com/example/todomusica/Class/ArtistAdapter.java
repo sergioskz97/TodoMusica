@@ -28,7 +28,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     List<ArtistItem> mData ;
     List<ArtistItem> mDataFiltered ;
     Integer aId, aFollowers;
-    String aName, aPicture = "";
+    String aName, aPicture, aGenre = "";
     boolean isDark = false;
 
 
@@ -59,6 +59,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     public void onBindViewHolder(@NonNull ArtistViewHolder ArtistViewHolder, int position) {
 
         ArtistViewHolder.tv_title.setText(mDataFiltered.get(position).getName());
+        ArtistViewHolder.tv_genre.setText(mDataFiltered.get(position).getGenre(0));
         Picasso.with(mContext).load(mDataFiltered.get(position).getPicture()).into(ArtistViewHolder.tv_picture);
 
     }
@@ -113,7 +114,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
     public class ArtistViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_title,tv_content,tv_date;
+        TextView tv_title,tv_content,tv_date, tv_genre;
         ImageView tv_picture;
         RelativeLayout container;
 
@@ -122,6 +123,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             container = itemView.findViewById(R.id.cardContainer);
             tv_title = itemView.findViewById(R.id.cardArtistName);
             tv_picture = itemView.findViewById(R.id.cardArtistPic);
+            tv_genre = itemView.findViewById(R.id.cardArtistGenre);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,12 +132,14 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
                     aName = mDataFiltered.get(getLayoutPosition()).getName();
                     aPicture  = mDataFiltered.get(getLayoutPosition()).getPicture();
                     aFollowers = mDataFiltered.get(getLayoutPosition()).getFollowers();
+                    aGenre = mDataFiltered.get(getLayoutPosition()).getGenre(0);
 
                     HomeFragmentDirections.Home2artist action = HomeFragmentDirections.home2artist();
                     action.setId(aId);
                     action.setName(aName);
                     action.setPicture(aPicture);
                     action.setFollowers(aFollowers);
+                    action.setGenre(aGenre);
                     Navigation.findNavController(v).navigate(action);
                 }
             });
