@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistprofileFragment extends Fragment {
-    TextView aName, aFollowers, aGenre;
+    TextView aName, aFollowers, aGenre, aNews;
     ImageView aPicture;
     Button followBtn;
     List<NewsItem> mData = new ArrayList<>();
@@ -50,6 +50,7 @@ public class ArtistprofileFragment extends Fragment {
         final ArtistprofileFragmentArgs args = ArtistprofileFragmentArgs.fromBundle(getArguments());
 
         followBtn = (Button) view.findViewById(R.id.followBtn);
+        aNews = (TextView) view.findViewById(R.id.artistNews);
 
         Response.Listener<String> listenerNews = new Response.Listener<String>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -66,6 +67,9 @@ public class ArtistprofileFragment extends Fragment {
                         JSONArray jsonArrayLink = new JSONArray(jsonObjectNews.getString("link"));
                         JSONArray jsonArrayThumbnail = new JSONArray(jsonObjectNews.getString("thumbnail"));
                         JSONArray jsonArrayDomain = new JSONArray(jsonObjectNews.getString("domain"));
+                        String news = jsonObjectNews.getString("news");
+
+                        aNews.setText(news);
 
                         for (int i = 0 ; i < jsonArrayTittle.length(); i++) {
                             mData.add(new NewsItem(args.getName(), jsonArrayTittle.getString(i), jsonArrayLink.getString(i), jsonArrayDate.getString(i), jsonArraySnippet.getString(i), jsonArrayThumbnail.getString(i), jsonArrayDomain.getString(i) ));
