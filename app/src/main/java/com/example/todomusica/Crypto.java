@@ -1,4 +1,4 @@
-package com.example.alexistorres.Class;
+package com.example.todomusica;
 
 import android.os.Build;
 
@@ -26,7 +26,7 @@ public class Crypto {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String encrypt (String pass) throws  Exception {
-        String key = "alexispelu";
+        String key = "todomusica";
         byte[] iBytes;
 
         SecureRandom random = new SecureRandom();
@@ -54,7 +54,7 @@ public class Crypto {
     }
 
     public String decrypt (String pass) throws Exception {
-        String key="alexispelu";
+        String key="todomusica";
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         ByteBuffer buffer = ByteBuffer.wrap(new Base64().decode(pass));
         byte[] saltBytes = new byte[20];
