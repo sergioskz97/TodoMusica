@@ -15,7 +15,6 @@ import androidx.navigation.Navigation;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.todomusica.Class.Crypto;
 import com.example.todomusica.Class.LoginRequest;
 import com.example.todomusica.Class.SessionManager;
 
@@ -32,6 +31,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
+        final Crypto crypto = new Crypto();
 
         emailT = (EditText) view.findViewById(R.id.loginEmail);
         passwordT = (EditText) view.findViewById(R.id.loginPass);
@@ -45,7 +45,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
 
                 String email = emailT.getText().toString();
-                String pass = passwordT.getText().toString();
+                final String pass = passwordT.getText().toString();
 
                 Response.Listener<String> loginResponse = new Response.Listener<String>() {
                     @Override
@@ -54,15 +54,26 @@ public class LoginFragment extends Fragment {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean ok = jsonObject.getBoolean("success");
                             if (ok){
-                                Integer id = jsonObject.getInt("id");
-                                String name = jsonObject.getString("name");
-                                String surname = jsonObject.getString("surname");
-                                String username = jsonObject.getString("username");
+                                String passw = jsonObject.getString("password");
+                                String dpass = crypto.decrypt(passw);
 
-                                sessionManager.setLogin(true);
-                                sessionManager.setData(id, name, surname, username);
+                                if ( dpass.equals(pass) ){
+                                    Integer id = jsonObject.getInt("id");
+                                    String name = jsonObject.getString("name");
+                                    String surname = jsonObject.getString("surname");
+                                    String username = jsonObject.getString("username");
 
-                                Navigation.findNavController(view).navigate(R.id.login2home);
+                                    sessionManager.setLogin(true);
+                                    sessionManager.setData(id, name, surname, username);
+
+                                    Navigation.findNavController(view).navigate(R.id.login2home);
+                                }
+
+                                else {
+                                    AlertDialog.Builder passError = new AlertDialog.Builder(view.getContext());
+                                    passError.setMessage("Error: La contraseña es incorrecta").setNegativeButton("Reintentar", null).create().show();
+                                }
+
                             }
                             else {
                                 AlertDialog.Builder loginError = new AlertDialog.Builder(view.getContext());
@@ -70,12 +81,18 @@ public class LoginFragment extends Fragment {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 };
 
-                Crypto crypto = new Crypto();
-                String cryptedPass = new String(crypto.encrypt(pass.getBytes()));
+                String cryptedPass = null;
+                try {
+                    cryptedPass = crypto.encrypt(pass);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 LoginRequest loginRequest = new LoginRequest(email, cryptedPass, loginResponse);
                 RequestQueue queue = Volley.newRequestQueue(view.getContext());
