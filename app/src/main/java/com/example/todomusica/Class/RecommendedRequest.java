@@ -13,7 +13,7 @@ public class RecommendedRequest extends StringRequest {
     private static final String route = "https://todomusicatest.000webhostapp.com/Recommended.php";
     private Map<String, String> params;
 
-    public RecommendedRequest(int userId, int mode , Response.Listener<String> listener) {
+    public RecommendedRequest(int mode, int userId , Response.Listener<String> listener) {
         super(Request.Method.POST, route, listener, null);
 
         params = new HashMap<>();
