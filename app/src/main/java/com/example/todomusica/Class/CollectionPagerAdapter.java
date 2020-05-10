@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.todomusica.DemoFragment;
 import com.example.todomusica.FeedFragment;
+import com.example.todomusica.RecommendedFragment;
 import com.example.todomusica.SearchFragment;
 
 public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
@@ -26,9 +27,8 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
             fragment.setArguments(args);
         }
         else if (position == 1){
-            fragment = new DemoFragment();
+            fragment = new RecommendedFragment();
             Bundle args = new Bundle();
-            args.putInt(DemoFragment.ARG_OBJECT, position + 1);
             fragment.setArguments(args);
         }
         else if (position == 2){
@@ -53,7 +53,7 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
             response = "Seguidos";
         }
         else if (position == 1){
-            response = "Noticias";
+            response = "Recomendado";
         }
         else if (position == 2){
             response = "Artistas";
