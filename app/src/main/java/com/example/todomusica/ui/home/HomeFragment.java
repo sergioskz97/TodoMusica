@@ -3,6 +3,7 @@ package com.example.todomusica.ui.home;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.todomusica.Class.CollectionPagerAdapter;
+import com.example.todomusica.Class.SessionManager;
 import com.example.todomusica.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,9 +30,12 @@ import java.net.URL;
 public class HomeFragment extends Fragment {
 
     ViewPager viewPager;
+    MenuItem item;
 
     public View onCreateView (@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        final SessionManager session = new SessionManager(getActivity().getApplicationContext());
 
         return view;
     }
