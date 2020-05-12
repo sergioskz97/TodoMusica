@@ -1,7 +1,10 @@
 package com.example.todomusica;
 
 import android.os.Bundle;
+import android.os.Trace;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.todomusica.Class.LoginRequest;
 import com.example.todomusica.Class.SessionManager;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +31,7 @@ public class LoginFragment extends Fragment {
     EditText emailT, passwordT;
     Button btn;
     TextView btnRegister;
+    NavigationView navigationView;
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +70,7 @@ public class LoginFragment extends Fragment {
 
                                     sessionManager.setLogin(true);
                                     sessionManager.setData(id, name, surname, username);
-
+                                    
                                     Navigation.findNavController(view).navigate(R.id.login2home);
                                 }
 
@@ -108,5 +113,30 @@ public class LoginFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void hideItem () {
+        final SessionManager session = new SessionManager(getView().getContext());
+
+        navigationView = (NavigationView) getView().findViewById(R.id.nav_view);
+        final Menu nav_Menu = navigationView.getMenu();
+
+        if (session.isLogged()) {
+            nav_Menu.findItem(R.id.nav_logout).setVisible(true);
+
+            MenuItem logout = (MenuItem) nav_Menu.findItem(R.id.nav_logout);
+            logout.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    session.logout();
+                    nav_Menu.findItem(R.id.nav_logout).setVisible(false);
+                    return false;
+                }
+            });
+        }
+
+        else {
+            nav_Menu.findItem(R.id.nav_logout).setVisible(false);
+        }
     }
 }
