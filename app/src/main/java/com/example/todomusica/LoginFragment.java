@@ -70,7 +70,7 @@ public class LoginFragment extends Fragment {
 
                                     sessionManager.setLogin(true);
                                     sessionManager.setData(id, name, surname, username);
-                                    
+
                                     Navigation.findNavController(view).navigate(R.id.login2home);
                                 }
 
